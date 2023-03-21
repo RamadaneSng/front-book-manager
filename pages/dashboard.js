@@ -56,7 +56,7 @@ const dashboard = () => {
         </div>
         <div className="content">
           {content === "addBook" && <AddBooks />}
-          {content === "myBooks" && <MyBooks />}
+          {/* {content === "myBooks" && <MyBooks />} */}
           {content === "stats" && <Stats />}
         </div>
       </main>
