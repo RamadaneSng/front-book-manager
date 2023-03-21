@@ -1,8 +1,8 @@
-import axios, { Axios } from "axios";
+// import axios, { Axios } from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import Layout from "../components/Layout";
+// import Layout from "../components/Layout";
 // import { setLogin } from "../features/login.slice";
 import { TextInput, PasswordInput, Group, Button } from "@mantine/core";
 import { Form, useForm, hasLength, isEmail, isNotEmpty } from "@mantine/form";

@@ -2,9 +2,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Card from "../components/Card";
-import Layout from "../components/Layout";
-import Nav from "../components/Nav";
+// import Card from "../components/Card";
+// import Layout from "../components/Layout";
+// import Nav from "../components/Nav";
 import useAuth from "../hooks/useAuth";
 
 const index = ({ books }) => {
