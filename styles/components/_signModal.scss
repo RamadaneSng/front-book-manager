@@ -1,0 +1,74 @@
+// // .form-connexion {
+// //     padding: 40px;
+
+
+// //     .form-container {
+// //         width: 300px;
+// //         margin: 0 auto;
+// //         background: white;
+// //         padding: 40px;
+// //         border-radius: 10px;
+
+
+// //         ul {
+// //             display: grid;
+// //             grid-template-columns: 50% 50%;
+// //             margin-bottom: 20px;
+
+
+// //             div {
+// //                 @include x-center;
+// //                 background: $white-1;
+// //                 height: 40px;
+// //                 padding: 3px;
+
+// //                 li {
+// //                     width: 100%;
+// //                     @include flex-center;
+// //                     border-radius: 5px;
+// //                     cursor: pointer;
+// //                 }
+// //             }
+
+// //             .active-btn {
+// //                 background: white;
+// //             }
+
+// //         }
+
+// form {
+//     display: flex;
+//     flex-direction: column;
+//     width: 15%;
+//     margin: 40px auto;
+
+//     div {
+//         margin-bottom: 20px;
+//         display: flex;
+//         flex-direction: column;
+
+//         input {
+//             margin-top: 8px;
+//             padding: 10px 0;
+//             border-radius: 5px;
+//             border: 1px solid rgba(128, 128, 128, 0.088);
+//         }
+
+//         input[type=submit] {
+//             // background: $color-1;
+//             outline: none;
+//             border: none;
+//             color: $white-1;
+//             cursor: pointer;
+//             transition: 0.2s;
+
+//             &:hover {
+//                 transform: scale(1.1);
+//             }
+//         }
+//     }
+// }
+
+// //     }
+
+// // }

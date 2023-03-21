@@ -1,0 +1,148 @@
+#ok {
+    position: fixed;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+
+
+}
+
+.books {
+    background: $white-1;
+
+
+
+
+    header {
+
+        background: $blue;
+        padding-bottom: 40px;
+        color: white;
+
+        .navbar {
+            display: grid;
+            grid-template-columns: 10% 75% 15%;
+            padding-top: 50px;
+            width: 90%;
+            margin: 0 auto;
+            outline: none;
+            align-items: center;
+
+
+
+            .search {
+                display: flex;
+                justify-content: center;
+                position: relative;
+
+                span {
+                    position: absolute;
+                    color: rgba(0, 0, 0, 0.452);
+                    left: 220px;
+                    bottom: 2px;
+                    font-size: 1.4rem;
+                    margin-left: 5px;
+
+                }
+
+                input {
+                    width: 600px;
+                    padding: 10px;
+                    border: 1px solid white;
+                    border-radius: 4px;
+                    padding-left: 50px
+                }
+            }
+
+            .user {
+                ul {
+                    display: flex;
+                    justify-content: space-between;
+
+                    li {
+                        color: white;
+                    }
+                }
+            }
+
+
+
+
+        }
+
+        .categorie-filter {
+            display: flex;
+            width: 75%;
+            justify-content: space-between;
+            margin: 0 auto;
+            padding-top: 50px;
+
+
+            label {
+                font-size: 0.8rem;
+                transition: 0.3s ease;
+                cursor: pointer;
+
+
+            }
+
+            input[type="radio"] {
+                display: none;
+
+                &:checked~label {
+                    color: $white-1;
+                    background: $orange;
+                    position: relative;
+                    padding: 7px 10px;
+                    border-radius: 5px;
+
+
+
+                }
+            }
+        }
+    }
+
+    .main {
+
+        // width: 90%;
+        margin: 20px auto;
+        height: 80vh;
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-top: 30px;
+
+            ul {
+
+                li {
+                    margin: 40px 0;
+                    cursor: pointer;
+                    padding: 5px;
+
+
+                }
+            }
+
+        }
+
+        .books-container {
+
+
+            .content {
+
+                // background: $gray;
+                // border: 1px solid $orange;
+                // height: 80vh;
+                // border-radius: 20px;
+                width: 95%;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            }
+        }
+    }
+
+}

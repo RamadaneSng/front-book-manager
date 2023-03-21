@@ -1,0 +1,38 @@
+.add-book {
+    width: 85%;
+    margin: 0 auto;
+
+    h2 {
+        margin: 60px 0 0 60px;
+        color: $black-1;
+        font-size: 2rem;
+
+    }
+
+    form {
+
+        width: 30%;
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 50px;
+        border: 1px solid rgba(128, 128, 128, 0.241);
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+        .form-item {
+            margin: 25px 0;
+
+            button {
+                width: 150px;
+                display: block;
+                margin: 0 auto;
+
+                // font-size: 16px;
+
+
+
+            }
+        }
+
+    }
+}

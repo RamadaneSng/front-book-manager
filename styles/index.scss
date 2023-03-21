@@ -1,0 +1,16 @@
+// global settings
+@import './settings';
+
+// pages
+@import './pages/home';
+@import './pages/dashboard';
+@import './pages/books';
+@import './pages/login';
+
+// components
+@import './components/nav';
+@import './components/addBook';
+// @import './components/signModal';
+// @import './components/create_book';
+@import './components/card';
+@import './components/comments';

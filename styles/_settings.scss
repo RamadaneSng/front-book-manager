@@ -1,0 +1,39 @@
+// Colors
+$blue: #293494;
+$blue-1: #4B72BE;
+$brown: #725B3A;
+$orange: #FCA72C;
+$gray: #F2E5D0;
+$white-1: #F4F4F4;
+$black-1: #202020;
+
+
+// font
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+// Mixin 
+@mixin x-center {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
