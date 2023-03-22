@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../lib/axios";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
@@ -17,7 +17,7 @@ const AddBook = () => {
     const pic = imageRef.current.files[0];
     const category = categorieRef.current.value;
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const formData = new FormData();
     formData.append("title", titre);
@@ -27,13 +27,7 @@ const AddBook = () => {
     formData.append("user_id", 1);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/book/postBook",
-        formData,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post("api/book/postBook", formData);
 
       console.log(response);
       // router.push("/");

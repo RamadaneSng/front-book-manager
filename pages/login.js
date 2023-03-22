@@ -36,25 +36,22 @@ const login = () => {
   }
 
   //submit form
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    // form.validate();
-
     login({ email, password, setErrors });
   };
-  // console.log(form.onSubmit);
 
   return (
     <div className="login">
       {/* <h2>Creez un compte</h2> */}
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={handleLogin}>
         <div className="form-item">
           <TextInput
             label="Email"
             placeholder="votre email"
             mt="md"
             onChange={(e) => setEmail(e.target.value)}
-            {...form.getInputProps("email")}
+            // {...form.getInputProps("email")}
           />
         </div>
         <div className="login-form-item">
@@ -63,7 +60,7 @@ const login = () => {
             style={{ marginTop: "16px" }}
             label="Mot de passe"
             placeholder="Mot de passe"
-            {...form.getInputProps("password")}
+            // {...form.getInputProps("password")}
           />
         </div>
 

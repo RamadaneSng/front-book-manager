@@ -1,28 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import psycho from "../public/images/psychologie of money.jpg";
+import useSWR from "swr";
 import { BiCommentDetail } from "react-icons/bi";
 import { setCommentSate } from "../features/comment.slice";
 import { useDispatch } from "react-redux";
+import { setBookId } from "../features/books.slice";
+import useAuth from "../hooks/useAuth";
+import axios from "../lib/axios";
 
-const Card = () => {
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+const Card = ({ book }) => {
   const dispatch = useDispatch();
+
+  const { user } = useAuth();
+
+  const handleClick = () => {
+    dispatch(setCommentSate(true));
+    dispatch(setBookId(book.id));
+  };
   return (
     <li className="card">
       <div className="image">
-        <Image src={psycho} width={220} height={300} />
+        <Image
+          loader={() => `http://localhost:8000/${book.pic}`}
+          src={`http://localhost:8000/${book.pic}`}
+          width={220}
+          height={300}
+          alt={"image de " + book.title}
+        />
       </div>
       <div className="btn-container">
-        <div className="btn" onClick={() => dispatch(setCommentSate(true))}>
-          <BiCommentDetail />
-        </div>
+        {user && (
+          <div className="btn">
+            <BiCommentDetail onClick={() => handleClick()} />
+          </div>
+        )}
       </div>
       <div className="infos">
-        <h3>
-          psychologie of money <span>( Finance) </span>
-        </h3>
+        <h3>{book.title}</h3>
+        <span>({book.category})</span>
         <p>
-          <span>Morgan Housel</span>
+          <span>{book.author}</span>
         </p>
       </div>
     </li>

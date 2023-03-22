@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { TextInput, PasswordInput, Group, Button } from "@mantine/core";
 import { Form, useForm, hasLength, isEmail, isNotEmpty } from "@mantine/form";
 import Link from "next/link";
+import useAuth from "../hooks/useAuth";
 // import { Value } from "sass";
 
 const register = () => {
@@ -14,6 +15,7 @@ const register = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(false);
+  const [errors, setErrors] = useState([]);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -40,17 +42,30 @@ const register = () => {
     },
   });
 
-  console.log(form.onSubmit((values) => console.log(values)));
+  // auth hook
+  //auth Hook
+  const { register, isLoading, user } = useAuth({ middleware: "guest" });
+
+  if (isLoading || user) {
+    return <>loading ...</>;
+  }
+
+  // submit form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    register({ name, email, password, setErrors });
+  };
 
   return (
     <div className="login">
       {/* <h2>Creez un compte</h2> */}
-      <form onSubmit={form.onSubmit()}>
+      <form onSubmit={handleSubmit}>
         <div className="form-item">
           <TextInput
             placeholder="Votre nom"
             label="Nom"
-            {...form.getInputProps("name")}
+            onChange={(e) => setName(e.target.value)}
+            // {...form.getInputProps("name")}
           />
         </div>
         <div className="form-item">
@@ -58,7 +73,8 @@ const register = () => {
             label="Email"
             placeholder="votre email"
             mt="md"
-            {...form.getInputProps("email")}
+            onChange={(e) => setEmail(e.target.value)}
+            // {...form.getInputProps("email")}
           />
         </div>
         <div className="login-form-item">
@@ -66,7 +82,7 @@ const register = () => {
             style={{ marginTop: "16px" }}
             label="Mot de passe"
             placeholder="Mot de passe"
-            {...form.getInputProps("password")}
+            // {...form.getInputProps("password")}
           />
         </div>
         <div className="login-form-item">
@@ -74,7 +90,8 @@ const register = () => {
             mt="sm"
             label="Comfirmer le mot de passe"
             placeholder="Comfirmer le mot de passe"
-            {...form.getInputProps("confirmPassword")}
+            onChange={(e) => setPassword(e.target.value)}
+            // {...form.getInputProps("confirmPassword")}
           />
         </div>
         <div className="login-form-item">

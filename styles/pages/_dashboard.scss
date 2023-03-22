@@ -1,11 +1,14 @@
 .dashboard {
     background: $blue;
     height: 100vh;
+    max-height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
 
     main {
         display: grid;
         grid-template-columns: 15% 85%;
-        height: 100vh;
+        max-height: 100vh;
 
         .sidebar {
             display: grid;

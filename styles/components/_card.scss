@@ -75,10 +75,14 @@
             margin-top: 10px;
             width: 80%;
 
-            span {
-                color: rgba(0, 0, 0, 0.363);
-            }
 
+
+        }
+
+        span {
+            color: rgba(0, 0, 0, 0.363);
+            font-size: 0.8rem;
+font-weight: bold;
         }
 
 
@@ -95,13 +99,4 @@
 
     }
 
-    // &::after {
-    //     position: absolute;
-    //     content: '';
-    //     height: 1px;
-    //     width: 100%;
-    //     background: gray;
-    //     bottom: -5px;
-
-    // }
 }

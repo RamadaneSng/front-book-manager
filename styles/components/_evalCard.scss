@@ -1,0 +1,78 @@
+.eval-card {
+    width: 85%;
+    margin: 20px auto;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
+
+    .top {
+
+        width: 100%;
+        justify-content: space-between;
+
+
+        .user-container {
+            display: flex;
+            flex-direction: column;
+
+            .user-infos {
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                div {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        height: 35px;
+                        width: 35px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: rgba(128, 128, 128, 0.168);
+                        border-radius: 50%;
+                        color: $brown;
+                        margin-right: 10px;
+                        font-weight: bold;
+                    }
+
+                    p {
+                        margin-right: 10px;
+                        text-transform: lowercase;
+                        font-weight: bold;
+                        color: $brown;
+                        font-size: 0.9rem;
+
+                    }
+                }
+            }
+
+            .message {
+                color: rgba(0, 0, 0, 0.718);
+                text-align: left;
+                margin-left: 45px;
+                font-size: 0.8rem;
+                line-height: 20px;
+                font-weight: 400;
+
+            }
+
+
+        }
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: flex-end;
+
+        p {
+            font-size: 0.8rem;
+            color: rgba(0, 0, 0, 0.467);
+            font-style: italic;
+        }
+    }
+}

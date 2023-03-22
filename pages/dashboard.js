@@ -4,11 +4,18 @@ import { FaBook } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
 import { BiLogOut } from "react-icons/bi";
 import AddBooks from "../components/dashboard/AddBook";
-// import MyBooks from "../components/dashboard/myBooks";
+import MyBooks from "../components/dashboard/myBooks";
 import Stats from "../components/dashboard/Stats";
+import useAuth from "../hooks/useAuth";
 
 const dashboard = () => {
   const [content, setContent] = useState("addBook");
+
+  const { isLoading, user } = useAuth({ middleware: "auth" });
+
+  if (isLoading) {
+    return <>loading ...</>;
+  }
 
   return (
     <div className="dashboard">
@@ -56,7 +63,7 @@ const dashboard = () => {
         </div>
         <div className="content">
           {content === "addBook" && <AddBooks />}
-          {/* {content === "myBooks" && <MyBooks />} */}
+          {content === "myBooks" && <MyBooks />}
           {content === "stats" && <Stats />}
         </div>
       </main>

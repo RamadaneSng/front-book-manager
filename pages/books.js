@@ -1,20 +1,23 @@
 import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
-
+import useSWR from "swr";
 import { FaSistrix } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Card from "../components/Card";
 import Comments from "../components/Comments";
+import useData from "../hooks/useData";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const books = () => {
   const [categorieFilter, setCategorieFilter] = useState("Tout");
-  // const [showComment, setShowComment] = useState(true);
   const showComment = useSelector((state) => state.comment.commentReducer);
 
   const Categories = [
     "Tout",
     "Technologie",
+    "Informatique",
     "Finance",
     "Histoire",
     "Sports",
@@ -25,6 +28,15 @@ const books = () => {
     "Entrepreneuriat",
     "Developpement personnel",
   ];
+  const { books, isLoading } = useData();
+  console.log(books);
+
+  // const { data, error, isLoading } = useSWR(
+  //   "http://localhost:8000/api/book/getBooks",
+  //   fetcher
+  // );
+  // if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
 
   return (
     <div className="books" id={showComment ? "ok" : ""}>
@@ -83,23 +95,12 @@ const books = () => {
           <div className="logout">deconnexion</div>
         </div> */}
         <div className="books-container">
-          <div className="content">
-            {showComment && <Comments showComment={showComment} />}
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+          <ul className="content">
+            {showComment && <Comments />}
+            {books.books.map((book) => (
+              <Card key={book.id} book={book}></Card>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

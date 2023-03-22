@@ -8,6 +8,7 @@ export const useAuth = ({ middleware, redirectIfAuth } = {}) => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  //user
   const {
     data: user,
     error,
@@ -16,8 +17,10 @@ export const useAuth = ({ middleware, redirectIfAuth } = {}) => {
     axios.get("/api/user").then((response) => response.data)
   );
 
+  //csrf
   const csrf = () => axios.get("/sanctum/csrf-cookie");
 
+  //login
   const login = async ({ setErrors, ...props }) => {
     setErrors([]);
 
@@ -29,7 +32,25 @@ export const useAuth = ({ middleware, redirectIfAuth } = {}) => {
       .catch((error) => {
         if (error.response.status != 422) throw error;
 
-        // setErrors(Object.values(error.response.data.errors).flat());
+        setErrors(Object.values(error.response.data.errors).flat());
+        console.log(error.response.data.errors);
+      });
+  };
+
+  //register
+
+  const register = async ({ setErrors, ...props }) => {
+    setErrors([]);
+
+    await csrf();
+
+    axios
+      .post("/api/register", props)
+      .then(() => mutate() && router.push("/"))
+      .catch((error) => {
+        if (error.response.status != 422) throw error;
+
+        setErrors(Object.values(error.response.data.errors).flat());
         console.log(error.response.data.errors);
       });
   };
@@ -48,13 +69,14 @@ export const useAuth = ({ middleware, redirectIfAuth } = {}) => {
     }
 
     if (middleware == "guest" && user) router.push("/");
-    if (middleware == "auth" && !user && error) logout();
-  });
+    if (middleware == "auth" && !user && error) router.push("/login");
+  }, [user, error]);
 
   return {
     user,
     csrf,
     login,
+    register,
     logout,
     isLoading,
   };

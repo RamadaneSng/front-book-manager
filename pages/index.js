@@ -66,11 +66,19 @@ const index = ({ books }) => {
                   )}
                 </li>
                 <li className="bar">|</li>
-                <li>
-                  <Link href="/register" style={{ color: "gray" }}>
-                    Inscription
-                  </Link>
-                </li>
+                {user ? (
+                  <li>
+                    <Link href="/dashboard" style={{ color: "gray" }}>
+                      Dashboard
+                    </Link>
+                  </li>
+                ) : (
+                  <li>
+                    <Link href="/register" style={{ color: "gray" }}>
+                      Inscription
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

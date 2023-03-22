@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const booksSlice = createSlice({
-  name: "pictures",
+export const bookSlice = createSlice({
+  name: "book",
   initialState: {
-    books: null,
+    bookId: null,
   },
   reducers: {
-    addBoos: (state, { payload }) => {
-      state.books.push(payload);
+    setBookId: (state, { payload }) => {
+      state.bookId = payload;
     },
   },
 });
 
-export const { addBooks } = booksSlice.actions;
-export default booksSlice.reducer;
+export const { setBookId } = bookSlice.actions;
+export default bookSlice.reducer;

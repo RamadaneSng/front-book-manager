@@ -12,12 +12,13 @@
 
 
     .container {
-        padding: 10px;
+        // padding: 10px;
         width: 700px;
-        height: 500px;
+        height: 600px;
         max-width: 700px;
-        border-radius: 10px;
+        border-radius: 7px;
         background: $white-1;
+
 
 
     }
@@ -27,50 +28,176 @@
         height: 100%;
         width: 100%;
         max-width: 700px;
-        overflow-y: scroll;
+        position: relative;
+        display: grid;
+        grid-template-rows: 10% 75% 15%;
 
 
 
-        &::-webkit-scrollbar-track {
 
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            background-color: #F5F5F5;
 
-        }
-
-        &::-webkit-scrollbar {
-            width: 12px;
-            background-color: #F5F5F5;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-            background-color: rgba(128, 128, 128, 0.449);
-        }
-
-        .top {
+        .header {
             position: relative;
+            padding: 10px 0;
+            text-align: center;
+            // margin: 10px auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            .left {
+                color: $black-1;
+                font-size: 1.2rem;
+
+            }
 
             .btn {
-                height: 40px;
-                width: 40px;
+                height: 30px;
+                width: 30px;
                 background: rgba(128, 128, 128, 0.268);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border-radius: 20px;
                 position: absolute;
-                right: 0;
+                right: 10px;
+                top: 10px;
                 cursor: pointer;
+                transition: 0.2s;
 
 
 
-                // &:hover {
-                //     transform: scale(1.2);
-                // }
+                &:hover {
+                    transform: scale(1.2);
+                }
             }
+
+        }
+
+        .scroll {
+            overflow-y: scroll;
+            width: 98%;
+            margin: 0 auto;
+
+            &::-webkit-scrollbar-track {
+
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #F5F5F5;
+
+
+            }
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background-color: #F5F5F5;
+
+
+
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 5px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: rgba(128, 128, 128, 0.449);
+
+            }
+        }
+
+        .book-infos {
+            display: grid;
+            width: 85%;
+            margin: 0 auto;
+            grid-template-columns: 50% 50%;
+
+            .pic {
+                img {
+                    width: auto;
+                    height: 350px;
+                    border-radius: 5px;
+                }
+            }
+
+            .infos {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                h3 {
+                    font-size: 1.3rem;
+                    color: $black-1;
+                    margin-bottom: 20px;
+                }
+
+                h4 {
+                    font-size: 13px;
+                    color: $brown;
+
+                    span {
+                        font-size: 15px;
+                        color: $black-1;
+                    }
+                }
+
+                h5 {
+                    font-size: 13px;
+                    color: $brown;
+
+                    span {
+                        font-size: 15px;
+                        color: $black-1;
+                    }
+                }
+
+                .note {
+                    margin-top: 15px;
+                }
+            }
+        }
+
+
+
+        .add-comment {
+            width: 100%;
+            margin: 0 auto;
+            border-bottom-left-radius: 7PX;
+            border-bottom-right-radius: 7PX;
+            box-shadow: 0 2px 8px 0 rgb(99 99 99 / 20%);
+            padding-top: 13px;
+
+            .top {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+
+                .user-pic {
+                    height: 37px;
+                    width: 37px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: rgba(128, 128, 128, 0.153);
+                    margin-right: 10px;
+                    font-weight: bold;
+                    color: $brown;
+
+                }
+
+                input {
+                    height: 20px;
+                    border-radius: 15px;
+                    width: 600px;
+                }
+            }
+
+            .rating {
+                margin: 7px 0 0 78px;
+            }
+
 
         }
     }
