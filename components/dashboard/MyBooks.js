@@ -1,14 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import useData from "../../hooks/useData";
 import Comments from "../Comments";
 import Card from "../Card";
+import { useEffect } from "react";
+import books from "../../pages/books";
+import { addBook, setBook } from "../../features/books.slice";
 
 const MyBooks = () => {
   const showComment = useSelector((state) => state.comment.commentReducer);
+  const dispatch = useDispatch();
   const { user, isLoading } = useAuth();
+
   const { books } = useData();
+  useEffect(() => {
+    dispatch(setBook(books));
+  }, [dispatch]);
+
   // console.log(books);
 
   let myBooks = [];
@@ -19,7 +27,6 @@ const MyBooks = () => {
   // if (isLoading) {
   //     return <p>Loading ...</p>;
   //   }
-
   console.log(myBooks);
 
   return (

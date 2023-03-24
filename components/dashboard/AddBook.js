@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "../../lib/axios";
 import { useRef } from "react";
+import { notifications } from "@mantine/notifications";
 import {
   TextInput,
   Select,
@@ -15,12 +16,13 @@ import useData from "../../hooks/useData";
 
 const AddBooks = () => {
   const [file, setFile] = useState(null);
-  const [data, setData] = useState([]);
+  const [category, setCategory] = useState("");
 
   const titreRef = useRef();
   const auteurRef = useRef();
   const categorieRef = useRef();
   const imageRef = useRef();
+  const formRef = useRef();
 
   const { user } = useAuth();
 
@@ -44,18 +46,36 @@ const AddBooks = () => {
       const response = await axios.post("/api/book/postBook", formData);
 
       console.log(response.data);
+
+      if (response.data.status === 200) {
+        notifications.show({
+          title: "Livre ajouter avec succes !",
+          message: "Vous pouvez voir votre livre dans la section mes livres",
+        });
+        formRef.current.reset();
+      } else {
+        notifications.show({
+          title: "Oups ",
+          message: "Veuillez remplir tous les champs! ",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
+
+    e.target.reset();
+    setFile("");
+    formRef.current.reset();
   };
 
   return (
     <div className="add-book">
       <h2>Ajouter un livre</h2>
 
-      <form onSubmit={addBook}>
+      <form onSubmit={addBook} ref={formRef}>
         <div className="form-item">
           <TextInput
+            required
             placeholder="Entrez le titre du livre"
             label="Titre du livre"
             ref={titreRef}
@@ -63,6 +83,7 @@ const AddBooks = () => {
         </div>
         <div className="form-item">
           <TextInput
+            required
             placeholder="Entrez l'auteur du livre"
             label="Auteur du livre"
             ref={auteurRef}
@@ -70,6 +91,7 @@ const AddBooks = () => {
         </div>
         <div className="form-item">
           <Select
+            required
             label="Categorie du livre"
             placeholder="Choisissez une categorie"
             data={[
@@ -93,6 +115,7 @@ const AddBooks = () => {
         <div className="form-item">
           <Group position="center">
             <FileButton
+              required
               style={{ width: "100%", background: "#293494" }}
               onChange={setFile}
               ref={imageRef}

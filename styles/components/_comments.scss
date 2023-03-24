@@ -121,12 +121,10 @@
             }
 
             .infos {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+
 
                 h3 {
-                    font-size: 1.3rem;
+                    font-size: 1.5rem;
                     color: $black-1;
                     margin-bottom: 20px;
                 }

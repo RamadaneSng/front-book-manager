@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 // import Layout from "../components/Layout";
 // import { setLogin } from "../features/login.slice";
 import { TextInput, PasswordInput, Group, Button } from "@mantine/core";
+import { Loader } from "@mantine/core";
 import { useForm, isEmail } from "@mantine/form";
 import Link from "next/link";
 import useAuth from "../hooks/useAuth";

@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { setCommentSate } from "../features/comment.slice";
+import {
+  addComment,
+  bookFetch,
+  setCommentData,
+  setCommentSate,
+} from "../features/comment.slice";
 import { Rating, TextInput } from "@mantine/core";
 import axios from "../lib/axios";
 import useAuth from "../hooks/useAuth";
@@ -13,10 +18,15 @@ const Comments = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [comment, setComment] = useState("");
-  const [currentBook, setCurrentBook] = useState([]);
+  // const [currentBook, setCurrentBook] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const bookId = useSelector((state) => state.book.bookId);
+  const currentBook = useSelector((state) => state.comment.currentBook);
+  console.log(currentBook);
+  const comments = useSelector((state) => state.comment.comments);
+  // console.log(comments[1].currentBook);
+  // console.log(comments[1].data);
 
   let imgPic;
   // let currentBookUser;
@@ -25,7 +35,7 @@ const Comments = () => {
   async function fetchBook() {
     await axios
       .get(`/api/book/getBook/${bookId}`)
-      .then((res) => setCurrentBook(res.data));
+      .then((res) => dispatch(setCommentData(res.data)));
     setIsLoading(false);
   }
 
@@ -42,8 +52,9 @@ const Comments = () => {
   let totalRates = Math.ceil(ratingsSom / currentBook?.Evaluation?.length);
 
   useEffect(() => {
+    // dispatch(bookFetch());
     fetchBook();
-  }, [bookId]);
+  }, [bookId, dispatch]);
 
   if (typeof currentBook !== "undefined" && currentBook.length > 0) {
     imgPic = currentBook.Book[0].pic;
@@ -63,7 +74,9 @@ const Comments = () => {
     dispatch(setBookId);
 
     try {
-      const response = await axios.post("/api/add/comment", data);
+      const response = await axios
+        .post("/api/add/comment", data)
+        .then(() => dispatch(addComment({ data, currentBook })));
 
       setValue(0);
       setComment("");
@@ -124,6 +137,7 @@ const Comments = () => {
                 <ul>
                   {currentBook.Evaluation.map((userEval) => (
                     <EvalCard
+                      // msg={userEval.data}
                       key={userEval.id}
                       userEval={userEval}
                       ratingsSom={ratingsSom}

@@ -7,11 +7,20 @@ import AddBooks from "../components/dashboard/AddBook";
 import MyBooks from "../components/dashboard/myBooks";
 import Stats from "../components/dashboard/Stats";
 import useAuth from "../hooks/useAuth";
+import { BsArrow90DegLeft } from "react-icons/bs";
+import Link from "next/link";
 
 const dashboard = () => {
   const [content, setContent] = useState("addBook");
 
-  const { isLoading, user } = useAuth({ middleware: "auth" });
+  const { isLoading, user, logout } = useAuth({ middleware: "auth" });
+
+  // const { data, error } = useSWR(
+  //   "http://localhost:8000/api/book/getBooks",
+  //   fetcher
+  // );
+  // if (error) return <div>failed to load</div>;
+  // if (isLoading) return <div>loading...</div>;
 
   if (isLoading) {
     return <>loading ...</>;
@@ -21,10 +30,21 @@ const dashboard = () => {
     <div className="dashboard">
       <main>
         <div className="sidebar">
-          <div className="logo">BibloLand</div>
+          <div className="back">
+            <Link href="/">
+              <BsArrow90DegLeft />
+            </Link>
+          </div>
+          <div className="logo">
+            <div className="logo">
+              <div className="logo">
+                B<span>i</span>blioLand
+              </div>
+            </div>
+          </div>
           <div className="user">
-            <div className="user-pic"></div>
-            <span>Pseudo</span>
+            <div className="user-pic">{user.user.name[0]}</div>
+            <span>{user.user.name}</span>
           </div>
           <div className="nav">
             <ul>
@@ -57,7 +77,7 @@ const dashboard = () => {
               </li>
             </ul>
           </div>
-          <div className="logout">
+          <div className="logout" onClick={logout}>
             <BiLogOut />
           </div>
         </div>

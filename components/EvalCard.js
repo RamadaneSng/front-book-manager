@@ -1,7 +1,7 @@
 import React from "react";
 import { Rating } from "@mantine/core";
 
-const EvalCard = ({ userEval }) => {
+const EvalCard = ({ userEval, msg }) => {
   const dateFormater = (date) => {
     let newDate = date.split("T");
 

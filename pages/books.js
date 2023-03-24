@@ -7,12 +7,20 @@ import { useSelector } from "react-redux";
 import Card from "../components/Card";
 import Comments from "../components/Comments";
 import useData from "../hooks/useData";
+import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
+import UserDropdown from "../components/UserDropdown";
+import { Group, Loader } from "@mantine/core";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const books = () => {
   const [categorieFilter, setCategorieFilter] = useState("Tout");
   const showComment = useSelector((state) => state.comment.commentReducer);
+
+  const { user, logout } = useAuth();
+
+  const router = useRouter();
 
   const Categories = [
     "Tout",
@@ -28,21 +36,41 @@ const books = () => {
     "Entrepreneuriat",
     "Developpement personnel",
   ];
-  const { books, isLoading } = useData();
-  console.log(books);
+  // const { books, isLoading } = useData();
+  // console.log(books);
 
-  // const { data, error, isLoading } = useSWR(
-  //   "http://localhost:8000/api/book/getBooks",
-  //   fetcher
-  // );
-  // if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  const { data, error, isLoading } = useSWR(
+    "http://localhost:8000/api/book/getBooks",
+    fetcher
+  );
+  if (error) return <div>failed to load</div>;
+  // if (isLoading) return <div>loading...</div>;
+
+  console.log(data);
 
   return (
     <div className="books" id={showComment ? "ok" : ""}>
       <header>
         <nav className="navbar">
-          <div className="logo">Logo</div>
+          <div className="logo">
+            <div className="logo">
+              B<span>i</span>blioLand
+            </div>
+          </div>
+          <ul>
+            <Link
+              href="/"
+              className={router.pathname == "/" ? "nav-active" : ""}
+            >
+              Acceuil
+            </Link>
+            <Link
+              href="/"
+              className={router.pathname == "/books" ? "nav-active" : ""}
+            >
+              Livres
+            </Link>
+          </ul>
 
           <div className="search">
             <span>
@@ -54,14 +82,25 @@ const books = () => {
             />
           </div>
           <div className="user">
-            <ul>
-              <Link href="/register">
-                <li>inscription</li>
-              </Link>
-              <Link href="/login">
-                <li>connexion</li>
-              </Link>
-            </ul>
+            {!user ? (
+              <div className="sign">
+                <ul>
+                  <li>
+                    <Link href="/login">Connexion</Link>
+                  </li>
+
+                  <li className="bar">|</li>
+
+                  <li>
+                    <Link href="/register" style={{ color: "gray" }}>
+                      Inscription
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <UserDropdown user={user} />
+            )}
           </div>
         </nav>
         <div className="categorie-filter">
@@ -95,12 +134,16 @@ const books = () => {
           <div className="logout">deconnexion</div>
         </div> */}
         <div className="books-container">
-          <ul className="content">
-            {showComment && <Comments />}
-            {books.books.map((book) => (
-              <Card key={book.id} book={book}></Card>
-            ))}
-          </ul>
+          {isLoading ? (
+            <p>Loading ...</p>
+          ) : (
+            <ul className="content">
+              {showComment && <Comments />}
+              {data.books.map((book) => (
+                <Card key={book.id} book={book}></Card>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>

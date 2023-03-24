@@ -1,17 +1,58 @@
 .my-books {
+    h2 {
+        margin: 40px 0 20px 200px;
+        color: $black-1;
+        font-size: 2rem;
+
+    }
 
     height: 100vh;
 
     .books-container {
         height: 100%;
 
-        ul {
+
+
+
+
+
+        .my-book-content {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            // height: ;
-            padding: 60px;
-            height: 500px;
+            height: 80%;
             overflow-y: scroll;
+            overflow-x: hidden;
+            width: 75%;
+            margin: 0 auto;
+            border: 1px solid rgba(128, 128, 128, 0.592);
+            border-radius: 10px;
+            margin: 0 auto;
+            justify-items: center;
+
+            &::-webkit-scrollbar-track {
+
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #F5F5F5;
+
+
+            }
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background-color: #F5F5F5;
+
+
+
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 5px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+                background-color: rgba(128, 128, 128, 0.449);
+
+            }
+
 
 
         }
