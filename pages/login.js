@@ -9,6 +9,8 @@ import { Loader } from "@mantine/core";
 import { useForm, isEmail } from "@mantine/form";
 import Link from "next/link";
 import useAuth from "../hooks/useAuth";
+import { CiLock } from "react-icons/ci";
+import { SiMaildotru } from "react-icons/si";
 // import { Value } from "sass";
 
 const login = () => {
@@ -44,10 +46,16 @@ const login = () => {
 
   return (
     <div className="login">
+      <Link href="/">
+        <div className="logo">
+          B<span>i</span>blioLand
+        </div>
+      </Link>
       {/* <h2>Creez un compte</h2> */}
       <form onSubmit={handleLogin}>
         <div className="form-item">
           <TextInput
+            icon={<SiMaildotru />}
             label="Email"
             placeholder="votre email"
             mt="md"
@@ -57,6 +65,7 @@ const login = () => {
         </div>
         <div className="login-form-item">
           <PasswordInput
+            icon={<CiLock />}
             onChange={(e) => setPassword(e.target.value)}
             style={{ marginTop: "16px" }}
             label="Mot de passe"

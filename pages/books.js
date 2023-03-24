@@ -10,12 +10,18 @@ import useData from "../hooks/useData";
 import { useRouter } from "next/router";
 import useAuth from "../hooks/useAuth";
 import UserDropdown from "../components/UserDropdown";
-import { Group, Loader } from "@mantine/core";
+import { Group, Input, Loader } from "@mantine/core";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const books = () => {
+  const { data, error, isLoading } = useSWR(
+    "http://localhost:8000/api/book/getBooks",
+    fetcher
+  );
+
   const [categorieFilter, setCategorieFilter] = useState("Tout");
+  const [filter, setFilter] = useState(data?.books);
   const showComment = useSelector((state) => state.comment.commentReducer);
 
   const { user, logout } = useAuth();
@@ -39,12 +45,19 @@ const books = () => {
   // const { books, isLoading } = useData();
   // console.log(books);
 
-  const { data, error, isLoading } = useSWR(
-    "http://localhost:8000/api/book/getBooks",
-    fetcher
-  );
   if (error) return <div>failed to load</div>;
+
   // if (isLoading) return <div>loading...</div>;
+
+  const FilterData = (index) => {
+    if (index === "Tout") {
+      const filter = data?.books.filter((x) => x.id != index);
+      setFilter(filter);
+    } else {
+      const filter = data?.books.filter((x) => x.category === index);
+      setFilter(filter);
+    }
+  };
 
   console.log(data);
 
@@ -73,10 +86,8 @@ const books = () => {
           </ul>
 
           <div className="search">
-            <span>
-              <FaSistrix />
-            </span>
-            <input
+            <Input
+              icon={<FaSistrix />}
               type="text"
               placeholder="Rechercher un livre ou un auteur "
             />
@@ -92,9 +103,7 @@ const books = () => {
                   <li className="bar">|</li>
 
                   <li>
-                    <Link href="/register" style={{ color: "gray" }}>
-                      Inscription
-                    </Link>
+                    <Link href="/register">Inscription</Link>
                   </li>
                 </ul>
               </div>
@@ -116,7 +125,7 @@ const books = () => {
               <label
                 htmlFor={el}
                 onClick={() => {
-                  setCategorieFilter(el);
+                  FilterData(el);
                 }}
               >
                 {el}
@@ -139,9 +148,13 @@ const books = () => {
           ) : (
             <ul className="content">
               {showComment && <Comments />}
-              {data.books.map((book) => (
-                <Card key={book.id} book={book}></Card>
-              ))}
+              {typeof filter === "undefined"
+                ? data.books?.map((book) => (
+                    <Card key={book.id} book={book}></Card>
+                  ))
+                : filter?.map((book) => (
+                    <Card key={book.id} book={book}></Card>
+                  ))}
             </ul>
           )}
         </div>

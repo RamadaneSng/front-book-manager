@@ -8,6 +8,8 @@ import { TextInput, PasswordInput, Group, Button } from "@mantine/core";
 import { Form, useForm, hasLength, isEmail, isNotEmpty } from "@mantine/form";
 import Link from "next/link";
 import useAuth from "../hooks/useAuth";
+import { SiMaildotru } from "react-icons/si";
+import { CiLock } from "react-icons/ci";
 // import { Value } from "sass";
 
 const register = () => {
@@ -58,6 +60,11 @@ const register = () => {
 
   return (
     <div className="login">
+      <Link href="/">
+        <div className="logo">
+          B<span>i</span>blioLand
+        </div>
+      </Link>
       {/* <h2>Creez un compte</h2> */}
       <form onSubmit={handleSubmit}>
         <div className="form-item">
@@ -70,6 +77,7 @@ const register = () => {
         </div>
         <div className="form-item">
           <TextInput
+            icon={<SiMaildotru />}
             label="Email"
             placeholder="votre email"
             mt="md"
@@ -79,6 +87,7 @@ const register = () => {
         </div>
         <div className="login-form-item">
           <PasswordInput
+            icon={<CiLock />}
             style={{ marginTop: "16px" }}
             label="Mot de passe"
             placeholder="Mot de passe"
@@ -87,6 +96,7 @@ const register = () => {
         </div>
         <div className="login-form-item">
           <PasswordInput
+            icon={<CiLock />}
             mt="sm"
             label="Comfirmer le mot de passe"
             placeholder="Comfirmer le mot de passe"

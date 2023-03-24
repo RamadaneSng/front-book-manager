@@ -4,7 +4,7 @@ export const bookSlice = createSlice({
   name: "book",
   initialState: {
     bookId: null,
-    book: [],
+    // book: [],
   },
   reducers: {
     setBookId: (state, { payload }) => {

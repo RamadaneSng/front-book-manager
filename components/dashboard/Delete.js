@@ -2,8 +2,8 @@ import { AiOutlineDelete } from "react-icons/ai";
 import axios from "../../lib/axios";
 
 const Delete = ({ id }) => {
-  const handleDelete = () => {
-    axios.delete("api/book/" + id).then((res) => console.log(res));
+  const handleDelete = async () => {
+    await axios.delete("api/book/" + id).then((res) => console.log(res));
   };
   return (
     <div className="delete-icon" onClick={() => handleDelete()}>

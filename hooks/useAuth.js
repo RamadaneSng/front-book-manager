@@ -46,7 +46,7 @@ export const useAuth = ({ middleware, redirectIfAuth } = {}) => {
 
     axios
       .post("/api/register", props)
-      .then(() => mutate() && router.push("/"))
+      .then(() => mutate() && router.push("/login"))
       .catch((error) => {
         if (error.response.status != 422) throw error;
 

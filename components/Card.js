@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import EditBook from "./dashboard/EditBook";
 import { TextInput, Button, Group } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import Delete from "./dashboard/Delete";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const Card = ({ book }) => {
   const dispatch = useDispatch();
@@ -27,6 +27,10 @@ const Card = ({ book }) => {
   const handleClick = () => {
     dispatch(setCommentSate(true));
     dispatch(setBookId(book.id));
+  };
+
+  const handleDelete = async () => {
+    await axios.delete("api/book/" + book.id).then((res) => console.log(res));
   };
   return (
     <li className="card">
@@ -83,7 +87,9 @@ const Card = ({ book }) => {
                 }}
               />
             </div>
-            <Delete id={book.id} />
+            <div className="delete-icon" onClick={() => handleDelete()}>
+              <AiOutlineDelete />
+            </div>
           </div>
         )}
       </div>

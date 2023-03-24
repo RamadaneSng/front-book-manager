@@ -13,9 +13,9 @@ const MyBooks = () => {
   const { user, isLoading } = useAuth();
 
   const { books } = useData();
-  useEffect(() => {
-    dispatch(setBook(books));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(setBook(books));
+  // }, [dispatch]);
 
   // console.log(books);
 
@@ -24,10 +24,6 @@ const MyBooks = () => {
   if (typeof books !== "undefined" && books.books.length > 0 && user.user.id) {
     myBooks = books.books.filter((book) => book.user_id === user.user.id);
   }
-  // if (isLoading) {
-  //     return <p>Loading ...</p>;
-  //   }
-  console.log(myBooks);
 
   return (
     <div className="my-books">

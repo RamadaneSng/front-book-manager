@@ -19,19 +19,19 @@ const EvalCard = ({ userEval, msg }) => {
         <div className="user-container">
           <div className="user-infos">
             <div>
-              <span>{userEval.user.name[0]}</span>
-              <p>{userEval.user.name}</p>
+              <span>{userEval?.user?.name[0]}</span>
+              <p>{userEval?.user?.name}</p>
             </div>
             <div className="eval">
-              <Rating value={userEval.evaluation} fractions={2} readOnly />
+              <Rating value={userEval?.evaluation} fractions={2} readOnly />
             </div>
           </div>
-          <div className="message">{userEval.comment}</div>
+          <div className="message">{userEval?.comment}</div>
         </div>
       </div>
       <div className="bottom">
         <p>
-          publié le : <span>{dateFormater(userEval.created_at)}</span>{" "}
+          publié le : <span>{dateFormater(userEval?.created_at)}</span>{" "}
         </p>
       </div>
     </li>

@@ -4,7 +4,6 @@ export const commentSlice = createSlice({
   name: "comment",
   initialState: {
     commentReducer: false,
-    currentBook: [],
     comments: [],
   },
   reducers: {
@@ -15,7 +14,7 @@ export const commentSlice = createSlice({
       state.comments.push(payload);
     },
     setCommentData: (state, { payload }) => {
-      state.currentBook = payload;
+      state.comments = payload;
     },
   },
 });
